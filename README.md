@@ -13,18 +13,15 @@ ln -s /home/$USER/Videos server/public
 ```
 
 
-#### Usage :
-
-
 <img src="/.jpg/4.png" alt="Index Server" title="Index Server">
 
+#### Usage :
 
 
 ```
 chmod +x run.sh
 ./run.sh
 ```
-
 
 
 <img src="/.jpg/2.jpg" alt="Index Server" title="Index Server">
