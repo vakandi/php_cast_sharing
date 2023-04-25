@@ -1,5 +1,6 @@
 #!/bin/sh
-ip="$(ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'| head -n 2 |tail -n 1)"
+ip="$(ifconfig | grep -A2 wlan0 | tail -n 2|awk '{print $2}' | head -n 1)"
+#ip="192.168.100.2"
 port="80"
 api_android="k-ee5dfbaf1714"
 link="http://$ip:$port"
