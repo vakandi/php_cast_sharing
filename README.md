@@ -9,7 +9,7 @@ ln -s /home/$USER/Videos server/public
 ```
 
 
-#### Usage
+#### Usage :
 ```
 chmod +x run.sh
 ./run.sh
