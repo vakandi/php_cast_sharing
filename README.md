@@ -29,5 +29,8 @@ chmod +x run.sh
  Just install the apk on your android, and add your api into to the variable "api" in ```run.sh```
 
 
+</br>
+</br>
+
 <img src="/.jpg/2.jpg" alt="Index Server" title="Index Server">
 <img src="/.jpg/1.jpg" alt="Index Server" title="Index Server">
