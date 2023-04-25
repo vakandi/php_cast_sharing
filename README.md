@@ -1,5 +1,7 @@
 # PHP Server Cast Sharing
 
+<img src="/.png/1.png alt="Index Server" title="Index Server">
+
 #### Installation : 
 ```
 {install php}
@@ -15,3 +17,5 @@ chmod +x run.sh
 ./run.sh
 ```
 
+<img src="/.png/2.png alt="Index Server" title="Index Server">
+<img src="/.png/3.png alt="Index Server" title="Index Server">
