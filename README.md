@@ -18,4 +18,4 @@ chmod +x run.sh
 ```
 
 <img src="/.jpg/2.jpg alt="Index Server" title="Index Server">
-<img src="/.jpg/3.jpg alt="Index Server" title="Index Server">
+<img src="/.jpg/3.png alt="Index Server" title="Index Server">
