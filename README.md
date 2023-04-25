@@ -17,11 +17,12 @@ ln -s /home/$USER/Videos server/public
 
 #### Usage :
 
-
 ```
 chmod +x run.sh
 ./run.sh
 ```
+- The script will send a notification using the XDroid API with a message indicating that the PHP server is ready, along with the server's IP address and port.
+- The PHP server will start on the specified IP address and port.
 
 
 <img src="/.jpg/2.jpg" alt="Index Server" title="Index Server">
