@@ -2,8 +2,6 @@
 
 
 <img src="/.jpg/3.png" alt="Index Server" title="Index Server">
-<img src="/.jpg/4.png" alt="Index Server" title="Index Server">
-
                                                              
                                                              
 #### Installation : 
@@ -16,6 +14,7 @@ ln -s /home/$USER/Videos server/public
 
 
 #### Usage :
+<img src="/.jpg/4.png" alt="Index Server" title="Index Server">
 ```
 chmod +x run.sh
 ./run.sh
