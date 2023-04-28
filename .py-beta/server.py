@@ -5,7 +5,7 @@ import os
 import socket
 import subprocess
 
-output = subprocess.check_output("ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 2| tail -n 1", shell=True)
+output = subprocess.check_output("ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | tail -n 1| awk '{print $2}'", shell=True)
 output_str = output.decode()
 
 
@@ -13,6 +13,9 @@ app = Flask(__name__)
 
 
 IPAddr = output_str.strip()
+print("\n\nIP ADDRESS OF THE SERVER : ")
+print(IPAddr)
+print("\n\n")
 # Template string for index page
 index_template = '''
 <!DOCTYPE html>
@@ -27,19 +30,46 @@ index_template = '''
             background-color: #f9f9f9;
         }
     </style>
-    <script>
-        function callAPI(apiType, filename) {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var resultBox = document.getElementById('result-box');
-                    resultBox.textContent = xhr.responseText;
-                    resultBox.style.display = 'block';
-                }
-            };
-            xhr.open('GET', '/' + apiType + '/' + filename, true);
-            xhr.send();
+<script>
+
+function CopyToClipboard(containerid) {
+  var resultBox = document.getElementById(containerid);
+  var textToCopy = resultBox.textContent;
+
+  var tempTextarea = document.createElement("textarea");
+  tempTextarea.value = textToCopy;
+  document.body.appendChild(tempTextarea);
+  tempTextarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempTextarea);
+
+  alert("Text has been copied!");
+}    
+
+function callAPI(apiType, filename) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var resultBox = document.getElementById('result-box');
+            resultBox.textContent = xhr.responseText;
+            
+            var videoPlayer = document.getElementById('video-player');
+            videoPlayer.style.display = 'block';
+            videoPlayer.getElementsByTagName('source')[0].src = 'public/' + filename;
+            console.log(videoPlayer);
+            videoPlayer.load();
         }
+    };
+    console.log("API TYPE :");
+    console.log(apiType);
+    console.log("FILENAME :");
+    console.log(filename);
+    xhr.open('GET', '/' + apiType + '/' + filename, true);
+    xhr.send();
+}
+
+
+
     </script>
 </head>
 <body>
@@ -55,21 +85,27 @@ index_template = '''
             <td>{{ file.filename }}</td>
             <td>{{ file.size }}</td>
             <td>
-            <!--
-                <button onclick="showLinks('{{ file.filename }}')">Show Links</button>
-                -->
                 <button onclick="callAPI('ftp', '{{ file.filename }}')">Show FTP Link</button>
                 <button onclick="callAPI('http', '{{ file.filename }}')">Show HTML Link</button>
 
 
-            <!--
-                <div id="file-link-box-{{ file.filename }}" class="file-link-box"></div>
-            -->
             </td>
         </tr>
         {% endfor %}
     </table>
             <div id="result-box" class="result-box"></div>
+
+</br>
+<button id="button1" onclick="CopyToClipboard('result-box')">Click to copy</button>
+</br>
+</br>
+<td>
+    <video id="video-player" style="display: none; max-width: 100%; height: auto;">
+        <source src="" type="video/mp4">
+    </video>
+</td>
+
+
 </body>
 </html>
 '''
@@ -90,15 +126,19 @@ def index():
 
 @app.route('/ftp/<filename>')
 def ftp(filename):
-    # Generate the FTP link using the IP address
-    ftp_link = f'ftp://{IPAddr}:5555/{filename}'
+    output = subprocess.check_output("ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | tail -n 1| awk '{print $2}'", shell=True)
+    output_str = output.decode()
+    IPAddr = output_str.strip()
+    ftp_link = f'ftp://{IPAddr}:5555/public/{filename}'
     return ftp_link
 
 
 @app.route('/http/<filename>')
 def http(filename):
-    # Generate the HTTP link using the IP address
-    http_link = f'http://{IPAddr}:5656/{filename}'
+    output = subprocess.check_output("ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | tail -n 1| awk '{print $2}'", shell=True)
+    output_str = output.decode()
+    IPAddr = output_str.strip()
+    http_link = f'http://192.168.100.13:5656/public/{filename}'
     return http_link
 
 

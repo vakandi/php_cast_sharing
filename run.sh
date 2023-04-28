@@ -37,9 +37,9 @@ curl http://xdroid.net/api/message\?k\=$api_android\&t\=MOVIE+PHP+SERVER+READY\&
 #iOS Push notfications 
 #curl https://api.simplepush.io/send -d '{"key":"'"$api_ios"'", "msg":"'"LOGOUT_$host"'"}'
 
-echo "\nNotifications sent\n"
+echo -e "\nNotifications sent\n"
 
-echo "\n"
-echo "Starting php server on :\nIP : [ $ip ] \nPORT : [ $port ]"
+echo -e "\n"
+echo -e "Starting php server on :\nIP : [ $ip ] \nPORT : [ $port ]"
 php -S $ip:$port -t server
 
