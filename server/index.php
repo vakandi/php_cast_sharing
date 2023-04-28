@@ -47,7 +47,7 @@ function callAPI(apiType, filename) {
             }
         }
     };
-    xhr.open('GET', 'api.php?apiType=' + apiType + '&filename=' + filename, true); // Update the URL to point to the PHP API file
+    xhr.open('GET', 'api.php?apiType=' + apiType + '&filename=' + filename, true);
     xhr.send();
 }
 
@@ -63,8 +63,7 @@ function CopyToClipboard(containerid) {
   document.body.removeChild(tempTextarea);
 
   alert("Text has been copied!");
-}
-    
+}    
 </script>
 </head>
 <body>
@@ -87,8 +86,10 @@ function CopyToClipboard(containerid) {
         <?php endforeach; ?>
     </table>
     <div id="result-box" class="result-box"></div>
+</br>
 <button id="button1" onclick="CopyToClipboard('result-box')">Click to copy</button>
-
+</br>
+</br>
 <td>
     <video id="video-player" style="display: none; max-width: 100%; height: auto;">
         <source src="" type="video/mp4">
